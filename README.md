@@ -30,7 +30,7 @@ After starting the application, simply enter a description of a movie plot into 
 
 ## License
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Attributions
 
