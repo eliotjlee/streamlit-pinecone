@@ -1,3 +1,14 @@
+"""
+Movie Matcher App:
+
+An interactive tool for exploring a movie dataset using semantic similarity search. Utilizes OpenAI's 
+Embeddings API and Pinecone's vector indexing to match user queries to movie plot descriptions. 
+Part of Streamlit's Connections Hackathon, demonstrating the use of Streamlit's ExperimentalBaseConnection. 
+
+For more information, please visit the project's GitHub page: 
+https://github.com/eliotjlee/movie-matcher
+"""
+
 import streamlit as st
 from connections.pinecone_conn import PineconeConnection
 from make_dataframe import make_result_dataframe
