@@ -2,6 +2,8 @@
 
 Movie Matcher is a web application built with Streamlit and Pinecone that uses semantic similarity search to find movies with plot descriptions similar to a user-provided description.
 
+Try the demo [here!](https://movie-matcher.streamlit.app/)
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -18,7 +20,7 @@ This project was developed as part of Streamlit's Connections Hackathon and show
 
 ## Getting Started
 
-To set up and run this application, you will need to:
+To set up and run this application locally, you will need to:
 
 1. Clone this repository.
 2. Install the required dependencies. These can be found in the `requirements.txt` file.
