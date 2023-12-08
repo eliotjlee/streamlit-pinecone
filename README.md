@@ -1,39 +1,133 @@
-# Movie Matcher 
+## Streamlit Pinecone Connection
 
-Movie Matcher is a web application built with Streamlit and Pinecone that uses semantic similarity search to find movies with plot descriptions similar to a user-provided description.
+This repo includes the `PineconeConnection` class, an `st.connection` wrapper for integrating the Pinecone API into Streamlit applications. It facilitates the use of Pinecone's powerful indexing and querying capabilities directly within Streamlit, making it ideal for building sophisticated search and data retrieval applications.
 
-Try the demo [here!](https://movie-matcher.streamlit.app/)
+### Features
 
-## Table of Contents
+- **Instantiate Pinecone Index**: Seamlessly connect to a Pinecone index.
+- **Rich Query Capabilities**: Perform queries with embeddings, retrieve top_k similar items.
+- **Index Insights**: Gather statistics about the Pinecone index's contents.
+- **Comprehensive Vector Operations**: Includes methods for deleting, updating, fetching, and upserting vectors in a namespace.
+- **Caching for Performance**: Results from various methods are cached to enhance the performance of your Streamlit app.
 
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [License](#license)
-- [Attributions](#attributions)
+### Installation
 
-## Overview
+Install the package using pip:
 
-This application allows users to explore a dataset of approximately 35,000 movies by inputting a description of a movie plot. The provided description is transformed into a vector using OpenAI's Embeddings API. This vector is then used to query a Pinecone index containing vectors of movie plot descriptions. The application returns the top 10 movies from the dataset whose plot descriptions are most semantically similar to the input.
+```
+pip install streamlit-pinecone
+```
 
-This project was developed as part of Streamlit's Connections Hackathon and showcases the functionality of Streamlit's data connections functionality (ExperimentalBaseConnection).
+### Usage
 
-## Getting Started
+Import and initialize the connection in your Streamlit app:
 
-To set up and run this application locally, you will need to:
+```python
+from streamlit_pinecone import PineconeConnection
 
-1. Clone this repository.
-2. Install the required dependencies. These can be found in the `requirements.txt` file.
-3. Run the application with Streamlit using `streamlit run app/app.py`
+# Initialize the connection
+conn = PineconeConnection(api_key='your_api_key', environment='your_environment', index_name='your_index_name')
 
-## Usage
+# Use the connection
+results = conn.query([...])
+```
 
-After starting the application, simply enter a description of a movie plot into the input box and click the 'Find Similar Movies' button. The application will return a list of 10 movies with similar plot descriptions from the dataset, along with their year of release, title, director, nationality, genre, synopsis, similarity score, and a link to their Wikipedia page.
+### Example
 
-## License
+![Movie Matcher Demo](https://i.imgur.com/JMEepUP.jpg)
 
-This project is licensed under the terms of the [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License](https://creativecommons.org/licenses/by-sa/4.0/).
+For a live demo, check out [Movie Matcher](movie-matcher.streamlit.app)!
 
-## Attributions
+You can find the source code under `\demo\` directory.
 
-This application uses a dataset of movie plots derived from Wikipedia, made available on [Kaggle](https://www.kaggle.com/datasets/jrobischon/wikipedia-movie-plots) by user jrobischon. Modifications were made to the dataset to include an index row for vector identification. This dataset is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License](https://creativecommons.org/licenses/by-sa/4.0/). In accordance with this license, any adaptations of this dataset must also be released under the same license.
+
+
+## Documentation
+
+### PineconeConnection Class
+
+The `PineconeConnection` class provides methods to interact with Pinecone indexes within a Streamlit app.
+
+---
+
+#### `index()`
+**Returns**: `pinecone.Index`  
+**Description**: Returns the Pinecone index instance.
+
+---
+
+#### `query(embeddings, top_k=10, ttl=3600, **kwargs)`
+**Parameters**:
+  - `embeddings`: List of embeddings for the query.
+  - `top_k` (int, optional): Number of top similar items to return. Default is 10.
+  - `ttl` (int, optional): Time-to-live for cache in seconds. Default is 3600.  
+**Returns**: Dictionary of query results.  
+**Description**: Queries the Pinecone index with provided embeddings.
+
+---
+
+#### `describe_index_stats(ttl=3600, **kwargs)`
+**Parameters**:
+  - `ttl` (int, optional): Time-to-live for cache in seconds. Default is 3600.  
+**Returns**: String describing index statistics.  
+**Description**: Provides statistics about the Pinecone index's contents.
+
+---
+
+#### `delete(ids, delete_all=None, namespace=None, filter=None, ttl=3600, **kwargs)`
+**Parameters**:
+  - `ids` (list): List of IDs to delete.
+  - `delete_all` (bool, optional): Flag to delete all vectors.
+  - `namespace` (str, optional): Namespace from which to delete.
+  - `filter` (dict, optional): Filter criteria for deletion.
+  - `ttl` (int, optional): Time-to-live for cache in seconds.  
+**Returns**: Dictionary of deletion results.  
+**Description**: Deletes vectors by ID from a namespace.
+
+---
+
+#### `update(id, values=None, sparse_values=None, set_metadata=None, namespace=None, ttl=3600, **kwargs)`
+**Parameters**:
+  - `id` (str): ID of the vector to update.
+  - `values`, `sparse_values`, `set_metadata`: Data for update.
+  - `namespace` (str, optional): Namespace to update.
+  - `ttl` (int, optional): Time-to-live for cache in seconds.  
+**Returns**: Dictionary of update results.  
+**Description**: Updates a vector in a namespace.
+
+---
+
+#### `fetch(ids, ttl=3600, namespace=None, **kwargs)`
+**Parameters**:
+  - `ids` (list): List of IDs to fetch.
+  - `ttl` (int, optional): Time-to-live for cache in seconds.
+  - `namespace` (str, optional): Namespace to fetch from.  
+**Returns**: Dictionary of fetched vectors.  
+**Description**: Fetches vectors by ID from a namespace.
+
+---
+
+#### `upsert(vectors, ttl=3600, namespace=None, **kwargs)`
+**Parameters**:
+  - `vectors` (list): List of vectors to upsert.
+  - `ttl` (int, optional): Time-to-live for cache in seconds.
+  - `namespace` (str, optional): Namespace to upsert into.  
+**Returns**: Dictionary of upsert results.  
+**Description**: Writes vectors into a namespace.
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+For more information, visit the [GitHub repository](https://github.com/yourusername/your-repo).
+
+### Contact
+
+Eliot Lee - eliotlee2026@u.northwestern.edu
+
+### Acknowledgments
+
+Special thanks to the Streamlit team and the Streamlit Developer Relations team for their support and for featuring this project in the Streamlit components gallery.
+

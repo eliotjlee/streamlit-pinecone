@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streamlit-pinecone"
+version = "1.0.0"
+description = "A Streamlit extension for connecting to Pinecone indexes."
+readme = "README.md"
+authors = [{ name = "Eliot Lee", email = "eliotlee2026@u.northwestern.edu" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+]
+keywords = ["streamlit", "pinecone", "data connection", "vector database", "streamlit component"]
+dependencies = [
+    "streamlit >= 1.28",
+    "pinecone-client >= 2.2.2",
+]
+requires-python = ">=3.9"
+
+[project.urls]
+Homepage = "https://github.com/eliotjlee/streamlit-pinecone"

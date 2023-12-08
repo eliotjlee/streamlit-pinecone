@@ -10,7 +10,7 @@ https://github.com/eliotjlee/movie-matcher
 """
 
 import streamlit as st
-from connections.pinecone_conn import PineconeConnection
+from streamlit_pinecone import PineconeConnection
 from make_dataframe import make_result_dataframe
 from embeddings import get_embeddings
 import os
@@ -18,7 +18,7 @@ import os
 st.set_page_config(page_title="Movie Matcher", page_icon=":film_projector:", layout='wide', initial_sidebar_state='auto')
 
 # Use custom connection to connect to Pinecone index
-conn = st.experimental_connection(
+conn = st.connection(
     "pinecone", 
     type=PineconeConnection, 
     api_key=os.getenv('PINECONE_API_KEY'),
