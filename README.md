@@ -36,7 +36,7 @@ results = conn.query([...])
 
 ![Movie Matcher Demo](https://i.imgur.com/JMEepUP.jpg)
 
-For a live demo, check out [Movie Matcher](movie-matcher.streamlit.app)!
+For a live demo powered by streamlit-pinecone, check out [Movie Matcher](movie-matcher.streamlit.app)!
 
 You can find the source code under `\demo\` directory.
 
