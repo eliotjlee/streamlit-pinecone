@@ -3,7 +3,7 @@ import pandas as pd
 # Inject results into a dataframe for display on Streamlit app
 def make_result_dataframe(results):
     # load the movie dataset as a DataFrame
-    data_frame = pd.read_csv("data/wiki_movie_plots_deduped_with_id.csv")
+    data_frame = pd.read_csv("demo/data/wiki_movie_plots_deduped_with_id.csv")
 
     # create an empty DataFrame to store your results
     result_df = pd.DataFrame(columns=["Year", "Title", "Genre", "Director", "Nationality", "Synopsis", "Similarity Score", "Wikipedia Link"])
